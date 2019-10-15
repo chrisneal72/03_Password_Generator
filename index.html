@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <title>Password Generator</title>
 </head>
+
 <body>
     <div class="container body-container">
         <div class="row">
@@ -19,18 +20,25 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <div class="row">
-                    <div class="col pass-border">
-                        <form name="password_generator">
-                        <textarea class="mytextbox" id="mytextbox"></textarea>
-                        </form>
-                    </div>
-                </div>
+            <div class="col pass-border">
+                <form name="password_generator">
+                    <textarea class="mytextbox" id="mytextbox" placeholder="Your Secure Password"></textarea>
+                </form>
             </div>
         </div>
-    </div>
+        <div class="row button-row">
+                <div class="col-3 center-block button-col">
+                    <button type="button" class="btn" onclick="genPass()">Generate Password</button>
+                </div>
+                <div class="col-3 offset-1 center-block button-col">
+                    <button type="button" class="btn" onclick="clearPass()">Clear Password</button>
+                </div>
+            <div class="col-3 offset-1 center-block button-col">
+                <button type="button" class="btn">Copy to Clipboard</button>
+            </div>
+        </div>
 </body>
+
 </html>
 
 <script src="assets/js/script.js"></script>

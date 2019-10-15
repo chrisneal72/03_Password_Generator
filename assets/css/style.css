@@ -38,4 +38,37 @@ h1 {
     resize: none;
     border: none;
     text-align: center;
+    color: lightslategrey;
+}
+
+.button-row{
+    margin-top: 20px;
+}
+
+.button-col{
+    text-align: center;
+}
+
+.btn {
+    background-color: #4aaaa5;
+    color: #fff;
+    width: 200px;
+    border-radius: 15px;
+}
+
+.btn:hover {
+    background-color: #214d4a;
+    color: #fff;
+    box-shadow: 0px 0px 20px 1px #4aaaa5;
+}
+
+.btn:focus {
+    background-color: #c50000;
+    color: #fff;
+    box-shadow: 0px 0px 20px 1px #4aaaa5;
+}
+
+.btn:active {
+    background-color: #c50000;
+    color: #fff;
 }
