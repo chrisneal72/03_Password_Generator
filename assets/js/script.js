@@ -1,69 +1,63 @@
-function clearPass(){
+function clearPass() {
     document.getElementById('mytextbox').placeholder = 'Your Secure Password';
     document.getElementById('mytextbox').value = '';
+
+    var promptsArray = ['special', 'numeric', 'lower', 'upper'];
+    for (i = 0; i < promptsArray.length; i++) {
+        document.getElementById(promptsArray[i]).checked = false;
+    }
+    document.getElementById('char_count').value = '';
+}
+
+function copyText() {
+    document.getElementById("mytextbox").select();
+    document.execCommand('copy');
+    if (window.getSelection) { window.getSelection().removeAllRanges(); }
+    else if (document.selection) { document.selection.empty(); }
 }
 
 function genPass() {
     //VARIABLES
     var choicesArray = [];
     var currentChoice;
-    var promptsArray = [
-        ['special', 'Do you wish to use Special Characters (yes or no)?', 'Please type yes or no\nDo you wish to use Special Characters?'],
-        ['numeric', 'Do you wish to use Numeric Characters (yes or no)?', 'Please type yes or no\nDo you wish to use Numeric Characters?'],
-        ['lower', 'Do you wish to use Lowercase Characters (yes or no)?', 'Please type yes or no\nDo you wish to use Lowercase Characters?'],
-        ['upper', 'Do you wish to use Uppercase Characters (yes or no)?', 'Please type yes or no\nDo you wish to use Uppercase Characters?']
-    ];
     var specialCharList = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
     var myRandomPass = '';
-    
-    currentChoice = prompt('How many characters should the password be (8 - 128)');
+    var promptsArray = ['special', 'numeric', 'lower', 'upper'];
+
+    document.getElementById('mytextbox').placeholder = 'Your Secure Password';
+    document.getElementById('mytextbox').value = '';
+
     //GET MY NUMBER OF CHARACTERS
-    if(!currentChoice){
-        document.getElementById('mytextbox').placeholder = 'No number can be generated';
+    currentChoice = document.getElementById('char_count').value;
+    if (!currentChoice) {
+        document.getElementById('mytextbox').placeholder = 'Please enter a valid number of characters between 8 and 128';
         return 0;
     }
     currentChoice = parseInt(currentChoice);
 
     //DETERMINE IF THE CHOICE WAS A NUMBER AND IN RANGE
-    while (currentChoice < 8 || currentChoice > 128 || isNaN(currentChoice)) {
-        currentChoice = prompt('Please enter a valid number between 8 and 128');
-        //IF THEY CANCEL QUIT THE FUNCTION
-        if(!currentChoice){
-            document.getElementById('mytextbox').placeholder = 'No number can be generated';
-            return 0;
-        }
-        currentChoice = parseInt(currentChoice);
+    if (currentChoice < 8 || currentChoice > 128 || isNaN(currentChoice)) {
+        document.getElementById('mytextbox').placeholder = 'Please enter a valid number of characters between 8 and 128';
+        return 0;
     }
-    choicesArray[choicesArray.length] = currentChoice;
 
-    //PROMPT FOR EACH OF THE OTHER CHOICES
-    //PLANNING TO CHANGE TO FORM ELEMENTS
+    document.getElementById('mytextbox').placeholder = 'Your Secure Password';
+
+    choicesArray.push(currentChoice);
+
+    //GET THE REST OF MY CHOICES
     for (i = 0; i < promptsArray.length; i++) {
-        currentChoice = prompt(promptsArray[i][1]);
-        //IF THEY CANCEL QUIT THE FUNCTION
-        if(!currentChoice){
-            document.getElementById('mytextbox').placeholder = 'No number can be generated';
-            return 0;
-        }
-        currentChoiceLower = currentChoice.toLowerCase();
-
-        while (currentChoiceLower != 'yes' && currentChoiceLower != 'y' && currentChoiceLower != 'no' && currentChoiceLower != 'n') {
-            currentChoice = prompt(promptsArray[i][2]);
-            //IF THEY CANCEL QUIT THE FUNCTION
-            if(!currentChoice){
-                document.getElementById('mytextbox').placeholder = 'No number can be generated';
-                return 0;
-            }
-            currentChoiceLower = currentChoice.toLowerCase();
-        }
-        if (currentChoiceLower === 'yes' || currentChoiceLower === 'y') {
-            choicesArray[choicesArray.length] = promptsArray[i][0];
+        currentChoice = document.getElementById(promptsArray[i]).checked;
+        //console.log(currentChoice + ' - ' + promptsArray[i]);
+        if (currentChoice) {
+            choicesArray.push(promptsArray[i]);
         }
     }
+    //console.log(choicesArray.length)
 
-    //IF THEY CANCEL QUIT THE FUNCTION
+    //IF NO OPTION SELECTED THEN STOP
     if (choicesArray.length < 2) {
-        document.getElementById('mytextbox').value = 'No number can be generated';
+        document.getElementById('mytextbox').placeholder = 'Please choose at least one character type to use';
         return 0;
     }
 
@@ -81,6 +75,7 @@ function genPass() {
     //     }
     // }
 
+    //BUILDING THE myRandomPass
     for (i = 0; i < choicesArray[0]; i++) {
         var currentCharType = Math.floor(Math.random() * (choicesArray.length - 1)) + 1;
         if (choicesArray[currentCharType] == 'special') {

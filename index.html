@@ -27,11 +27,10 @@
                 <div class="col-5 pass-border">
                     <div class="row button-row align-items-center">
                         <div class="col-8 choices-col">
-                            How many characters:<br>
-                            (8 - 128)
+                            How many characters (8 - 128):
                         </div>
                         <div class="col-4 switches-col">
-                            <input type="text" name="char_count" class="char-text-box">
+                            <input type="text" id="char_count" class="char-text-box">
                         </div>
                     </div>
                     <div class="row button-row align-items-center">
@@ -40,7 +39,7 @@
                         </div>
                         <div class="col-4 switches-col align-middle">
                             Off <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" id="special">
                                 <span class="slider round"></span>
                             </label> On
                         </div>
@@ -51,7 +50,7 @@
                         </div>
                         <div class="col-4 switches-col">
                             Off <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" id="numeric">
                                 <span class="slider round"></span>
                             </label> On
                         </div>
@@ -62,7 +61,7 @@
                         </div>
                         <div class="col-4 switches-col">
                             Off <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" id="lower">
                                 <span class="slider round"></span>
                             </label> On
                         </div>
@@ -73,7 +72,7 @@
                         </div>
                         <div class="col-4 switches-col">
                             Off <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" id="upper">
                                 <span class="slider round"></span>
                             </label> On
                         </div>
@@ -85,10 +84,10 @@
                     <button type="button" class="btn" onclick="genPass()">Generate Password</button>
                 </div>
                 <div class="col-3 offset-1 center-block button-col">
-                    <button type="button" class="btn" onclick="clearPass()">Clear Password</button>
+                    <button type="button" class="btn" onclick="copyText()">Copy to Clipboard</button>
                 </div>
                 <div class="col-3 offset-1 center-block button-col">
-                    <button type="button" class="btn">Copy to Clipboard</button>
+                    <button type="button" class="btn" onclick="clearPass()">Clear Password</button>
                 </div>
             </div>
         </div>
