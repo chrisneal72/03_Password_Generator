@@ -7,7 +7,7 @@
 - [Link](#Link)
 ​
 ### Description
-A mobile responsive portfolio to showcase my coding work and let visitors know a little bit about me.
+
 ​
 ### Technologies-Libraries
 - [Bootstrap](https://getbootstrap.com/) - CSS Framework
@@ -20,4 +20,4 @@ A mobile responsive portfolio to showcase my coding work and let visitors know a
 ​
 ### Link
 Check it out! 
-https://shellylane.github.io/Bootstrap-Portfolio/
+https://chrisneal72.github.io/03_Password_Generator/
