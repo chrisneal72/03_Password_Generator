@@ -12,31 +12,87 @@
 </head>
 
 <body>
-    <div class="container body-container">
-        <div class="row">
-            <div class="col">
-                <h1>Password Generator</h1>
-                <hr class="hr">
+    <form name="password_generator">
+        <div class="container body-container">
+            <div class="row">
+                <div class="col">
+                    <h1>Password Generator</h1>
+                    <hr class="hr">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col pass-border">
-                <form name="password_generator">
+            <div class="row">
+                <div class="col-7 pass-border">
                     <textarea class="mytextbox" id="mytextbox" placeholder="Your Secure Password"></textarea>
-                </form>
+                </div>
+                <div class="col-5 pass-border">
+                    <div class="row button-row align-items-center">
+                        <div class="col-8 choices-col">
+                            How many characters:<br>
+                            (8 - 128)
+                        </div>
+                        <div class="col-4 switches-col">
+                            <input type="text" name="char_count" class="char-text-box">
+                        </div>
+                    </div>
+                    <div class="row button-row align-items-center">
+                        <div class="col-8 choices-col">
+                            Special Characters:
+                        </div>
+                        <div class="col-4 switches-col align-middle">
+                            Off <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label> On
+                        </div>
+                    </div>
+                    <div class="row button-row align-items-center">
+                        <div class="col-8 choices-col">
+                            Numeric Characters:
+                        </div>
+                        <div class="col-4 switches-col">
+                            Off <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label> On
+                        </div>
+                    </div>
+                    <div class="row button-row align-items-center">
+                        <div class="col-8 choices-col">
+                            Lowercase Characters:
+                        </div>
+                        <div class="col-4 switches-col">
+                            Off <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label> On
+                        </div>
+                    </div>
+                    <div class="row button-row align-items-center button-row-bottom">
+                        <div class="col-8 choices-col">
+                            Uppercase Characters:
+                        </div>
+                        <div class="col-4 switches-col">
+                            Off <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label> On
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row button-row">
+            <div class="row button-row">
                 <div class="col-3 center-block button-col">
                     <button type="button" class="btn" onclick="genPass()">Generate Password</button>
                 </div>
                 <div class="col-3 offset-1 center-block button-col">
                     <button type="button" class="btn" onclick="clearPass()">Clear Password</button>
                 </div>
-            <div class="col-3 offset-1 center-block button-col">
-                <button type="button" class="btn">Copy to Clipboard</button>
+                <div class="col-3 offset-1 center-block button-col">
+                    <button type="button" class="btn">Copy to Clipboard</button>
+                </div>
             </div>
         </div>
+    </form>
 </body>
 
 </html>

@@ -24,9 +24,10 @@ function genPass() {
     }
     currentChoice = parseInt(currentChoice);
 
-    //DERTEMIN IF THE CHOICE WAS A NUMBER AND IN RANGE
+    //DETERMINE IF THE CHOICE WAS A NUMBER AND IN RANGE
     while (currentChoice < 8 || currentChoice > 128 || isNaN(currentChoice)) {
         currentChoice = prompt('Please enter a valid number between 8 and 128');
+        //IF THEY CANCEL QUIT THE FUNCTION
         if(!currentChoice){
             document.getElementById('mytextbox').placeholder = 'No number can be generated';
             return 0;
