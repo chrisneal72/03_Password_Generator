@@ -55,8 +55,9 @@ h1 {
 .btn {
     background-color: #4aaaa5;
     color: #fff;
-    width: 200px;
+    width: 175px;
     border-radius: 15px;
+    margin: 10px 20px 10px 20px;
 }
 
 .btn:hover {
@@ -147,7 +148,7 @@ input:checked+.slider:before {
 }
 
 .char-text-box{
-    width: 60px;
+    width: 40px;
     height: 26px;
     text-align: center;
     color: lightslategrey;

@@ -82,15 +82,15 @@ function genPass() {
             //Get random special char
             myRandomPass = myRandomPass + specialCharList.charAt(Math.floor(Math.random() * specialCharList.length));
         }
-        if (choicesArray[currentCharType] == 'numeric') {
+        else if (choicesArray[currentCharType] == 'numeric') {
             //Get random number
             myRandomPass = myRandomPass + Math.floor(Math.random() * 10);
         }
-        if (choicesArray[currentCharType] == 'lower') {
+        else if (choicesArray[currentCharType] == 'lower') {
             //Get random lower
             myRandomPass = myRandomPass + String.fromCharCode(Math.floor(Math.random() * 26) + 97);
         }
-        if (choicesArray[currentCharType] == 'upper') {
+        else if (choicesArray[currentCharType] == 'upper') {
             //Get random upper
             myRandomPass = myRandomPass + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase();
         }

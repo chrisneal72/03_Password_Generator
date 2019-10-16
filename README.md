@@ -9,18 +9,18 @@
 ### Description
 Basic password generator using random numbers, letters and special characters. This started with just a run through script. I made it into a function and used the button to start the gen process.
 
-First iteration is using Prompts to collect the choices. My intent is to comment that out and use form elements on the page for the user choices.
+First iteration I used Prompts to collect the choices. I have made alterations to get the choices from HTML elements.
 
-I have the copy to clipboard button, but it will probably be the last thing I connect.
+I added the copy to clipboard function from a google search. I also did not like that the text stayed highlighted, so I found some lines to deselect the text after the copy.
 ​
 ### Technologies-Libraries
 - [Bootstrap](https://getbootstrap.com/) - CSS Framework
 ​
 ### Screenshots
 ​
-![Image](assets/images/fullscreen.png)
+![Image](assets/images/full.jpg)
 ​
-![Image](assets/images/smallscreen.png)
+![Image](assets/images/small.jpg)
 ​
 ### Link
 Check it out! 
