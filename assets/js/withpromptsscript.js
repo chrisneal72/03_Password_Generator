@@ -67,20 +67,6 @@ function genPass() {
         return 0;
     }
 
-    // var specialCharPosArray = [];
-
-    // if(choicesArray.length > 2 && choicesArraybandArray.indexOf('special')){
-    //     var numOfSpecChars = 0;
-    //     if(choicesArray[0] > 7 && choicesArray[0] < 39){numOfSpecChars = 1};
-    //     if(choicesArray[0] > 38 && choicesArray[0] < 68){numOfSpecChars = 2};
-    //     if(choicesArray[0] > 68 && choicesArray[0] < 99){numOfSpecChars = 3};
-    //     if(choicesArray[0] > 98 && choicesArray[0] < 129){numOfSpecChars = 4};
-
-    //     for (i = 0; i < numOfSpecChars; i++) {
-    //         specialCharPosArray[i] = Math.floor(Math.random() * (129 - 8)) + 1;
-    //     }
-    // }
-
     for (i = 0; i < choicesArray[0]; i++) {
         var currentCharType = Math.floor(Math.random() * (choicesArray.length - 1)) + 1;
         if (choicesArray[currentCharType] == 'special') {

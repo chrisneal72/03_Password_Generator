@@ -20,81 +20,60 @@ function genPass() {
     //VARIABLES
     var choicesArray = [];
     var currentChoice;
+    var passLength;
     var specialCharList = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
     var myRandomPass = '';
-    var promptsArray = ['special', 'numeric', 'lower', 'upper'];
+    var currentCharProcess = {
+        special: function () {
+            return specialCharList.charAt(Math.floor(Math.random() * specialCharList.length));
+        },
+        numeric: function () {
+            return Math.floor(Math.random() * 10);
+        },
+        lower: function () {
+            return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+        },
+        upper: function () {
+            return String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase();
+        }
+    };
 
-    document.getElementById('mytextbox').placeholder = 'Your Secure Password';
-    document.getElementById('mytextbox').value = '';
+    //GET MY NUMBER OF CHARACTERS FROM THE PAGE
+    passLength = document.getElementById('char_count').value;
+    passLength = parseInt(passLength);
 
-    //GET MY NUMBER OF CHARACTERS
-    currentChoice = document.getElementById('char_count').value;
-    if (!currentChoice) {
+    //CHECK TO MAKE SURE SOMETHING WAS ENTERED AND IT IS A NUMBER AND WITHIN RANGE
+    if (!passLength || passLength < 8 || passLength > 128 || isNaN(passLength)) {
         document.getElementById('mytextbox').placeholder = 'Please enter a valid number of characters between 8 and 128';
         return 0;
     }
-    currentChoice = parseInt(currentChoice);
 
-    //DETERMINE IF THE CHOICE WAS A NUMBER AND IN RANGE
-    if (currentChoice < 8 || currentChoice > 128 || isNaN(currentChoice)) {
-        document.getElementById('mytextbox').placeholder = 'Please enter a valid number of characters between 8 and 128';
-        return 0;
-    }
-
-    document.getElementById('mytextbox').placeholder = 'Your Secure Password';
-
-    choicesArray.push(currentChoice);
-
-    //GET THE REST OF MY CHOICES
-    for (i = 0; i < promptsArray.length; i++) {
-        currentChoice = document.getElementById(promptsArray[i]).checked;
-        //console.log(currentChoice + ' - ' + promptsArray[i]);
+    //GET THE REST OF MY CHOICES BY LOOPING OVER OBJECT KEYS TO GET SELECTIONS FROM PAGE
+    for (var key in currentCharProcess) {
+        currentChoice = document.getElementById(key).checked;
         if (currentChoice) {
-            choicesArray.push(promptsArray[i]);
+            choicesArray.push(key);
         }
     }
-    //console.log(choicesArray.length)
 
-    //IF NO OPTION SELECTED THEN STOP
-    if (choicesArray.length < 2) {
+    //IF NO OPTION SELECTED THEN STOP AND TELL WHY
+    if (choicesArray.length == 0) {
         document.getElementById('mytextbox').placeholder = 'Please choose at least one character type to use';
         return 0;
     }
 
-    // var specialCharPosArray = [];
-
-    // if(choicesArray.length > 2 && choicesArraybandArray.indexOf('special')){
-    //     var numOfSpecChars = 0;
-    //     if(choicesArray[0] > 7 && choicesArray[0] < 39){numOfSpecChars = 1};
-    //     if(choicesArray[0] > 38 && choicesArray[0] < 68){numOfSpecChars = 2};
-    //     if(choicesArray[0] > 68 && choicesArray[0] < 99){numOfSpecChars = 3};
-    //     if(choicesArray[0] > 98 && choicesArray[0] < 129){numOfSpecChars = 4};
-
-    //     for (i = 0; i < numOfSpecChars; i++) {
-    //         specialCharPosArray[i] = Math.floor(Math.random() * (129 - 8)) + 1;
-    //     }
-    // }
-
-    //BUILDING THE myRandomPass
-    for (i = 0; i < choicesArray[0]; i++) {
-        var currentCharType = Math.floor(Math.random() * (choicesArray.length - 1)) + 1;
-        if (choicesArray[currentCharType] == 'special') {
-            //Get random special char
-            myRandomPass = myRandomPass + specialCharList.charAt(Math.floor(Math.random() * specialCharList.length));
-        }
-        else if (choicesArray[currentCharType] == 'numeric') {
-            //Get random number
-            myRandomPass = myRandomPass + Math.floor(Math.random() * 10);
-        }
-        else if (choicesArray[currentCharType] == 'lower') {
-            //Get random lower
-            myRandomPass = myRandomPass + String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-        }
-        else if (choicesArray[currentCharType] == 'upper') {
-            //Get random upper
-            myRandomPass = myRandomPass + String.fromCharCode(Math.floor(Math.random() * 26) + 97).toUpperCase();
-        }
-        // console.log(currentCharType + ' - ' + choicesArray[currentCharType])
+    //BUILDING THE myRandomPass VALUE
+    for (i = 0; i < passLength; i++) {
+        //GET RANDOM CHARACTER TYPE
+        var currentCharType = choicesArray[Math.floor(Math.random() * (choicesArray.length))];
+        //PROCESS THE CHARACTER TYPE USING THE OBJECT
+        myRandomPass = myRandomPass + currentCharProcess[currentCharType]();
     }
+    //SETTING THE TEXTAREA VALUE TO THE RANDOM PASSWORD
     document.getElementById('mytextbox').value = myRandomPass;
 }
+
+//BUTTON ACTIONS
+document.getElementById('genPass').addEventListener('click', function () { genPass(); })
+document.getElementById('copyText').addEventListener('click', function () { copyText(); })
+document.getElementById('clearPass').addEventListener('click', function () { clearPass(); })
