@@ -1,7 +1,6 @@
 function clearPass() {
     document.getElementById('mytextbox').placeholder = 'Your Secure Password';
     document.getElementById('mytextbox').value = '';
-
     var promptsArray = ['special', 'numeric', 'lower', 'upper'];
     for (i = 0; i < promptsArray.length; i++) {
         document.getElementById(promptsArray[i]).checked = false;
